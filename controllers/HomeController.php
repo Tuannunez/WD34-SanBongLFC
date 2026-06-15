@@ -2,8 +2,16 @@
 
 class HomeController
 {
-    public function index() 
+    public function index()
     {
-        require_once PATH_VIEW . 'home.php';
+        $title = 'Trang chủ';
+
+        if (isset($_SESSION['user']) && $_SESSION['user']['role'] === 'admin') {
+            $view = 'admin/home';
+        } else {
+            $view = 'users/home';
+        }
+
+        require_once PATH_VIEW . 'main.php';
     }
 }
