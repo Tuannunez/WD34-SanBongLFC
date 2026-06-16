@@ -50,4 +50,10 @@ class User extends BaseModel
 
         return (int)$this->pdo->lastInsertId();
     }
+
+    public function updatePassword(int $id, string $passwordHash): bool
+    {
+        $stmt = $this->pdo->prepare("UPDATE {$this->table} SET password = :password WHERE id = :id");
+        return $stmt->execute(['password' => $passwordHash, 'id' => $id]);
+    }
 }

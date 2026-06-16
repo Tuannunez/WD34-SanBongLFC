@@ -119,7 +119,22 @@ class AuthController
 
         $user = $this->userModel->findByUsernameOrEmail($login);
 
-        if (!$user || !password_verify($password, $user['password'])) {
+        if (!$user) {
+            $errors[] = 'Tên đăng nhập/email hoặc mật khẩu không đúng.';
+        }
+
+        $passwordMatches = false;
+        if ($user) {
+            if (password_verify($password, $user['password'])) {
+                $passwordMatches = true;
+            } elseif ($password === $user['password']) {
+                // Legacy case: password stored in plain text in DB.
+                $passwordMatches = true;
+                $this->userModel->updatePassword($user['id'], password_hash($password, PASSWORD_DEFAULT));
+            }
+        }
+
+        if (!$passwordMatches) {
             $errors[] = 'Tên đăng nhập/email hoặc mật khẩu không đúng.';
         }
 
@@ -132,6 +147,12 @@ class AuthController
         unset($user['password']);
         $_SESSION['user'] = $user;
         $_SESSION['success'] = 'Đăng nhập thành công.';
+
+        // Nếu là admin chuyển tới dashboard admin, ngược lại về trang chủ user
+        if (($user['role'] ?? '') === 'admin') {
+            $this->redirect(BASE_URL . '?action=admin');
+        }
+
         $this->redirect(BASE_URL);
     }
 

@@ -38,13 +38,25 @@
         <h5 class="fw-bold mb-3">Chức năng nhanh</h5>
         <div class="row g-3">
             <div class="col-md-4">
-                <a href="#" class="btn btn-outline-primary w-100">Quản lý người dùng</a>
+                <a href="<?= BASE_URL ?>?action=admin_users" class="btn btn-outline-primary w-100">Quản lý người dùng</a>
             </div>
             <div class="col-md-4">
-                <a href="#" class="btn btn-outline-primary w-100">Quản lý sân bãi</a>
+                <a href="#" class="btn btn-outline-primary w-100">Doanh thu</a>
             </div>
             <div class="col-md-4">
-                <a href="#" class="btn btn-outline-primary w-100">Xem đặt lịch</a>
+                <a href="#" class="btn btn-outline-primary w-100">Thanh toán</a>
+            </div>
+            <div class="col-md-4">
+                <a href="#" class="btn btn-outline-primary w-100">Quản lý tin tức</a>
+            </div>
+            <div class="col-md-4">
+                <a href="#" class="btn btn-outline-primary w-100">Điều khoản</a>
+            </div>
+            <div class="col-md-4">
+                <a href="<?= BASE_URL ?>?action=admin_fields" class="btn btn-outline-primary w-100">Quản lý sân bãi</a>
+            </div>
+            <div class="col-md-4">
+                <a href="<?= BASE_URL ?>?action=admin_bookings" class="btn btn-outline-primary w-100">Xem đặt lịch</a>
             </div>
         </div>
     </div>
