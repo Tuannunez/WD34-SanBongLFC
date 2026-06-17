@@ -53,7 +53,7 @@
                 <a href="#" class="btn btn-outline-primary w-100">Điều khoản</a>
             </div>
             <div class="col-md-4">
-                <a href="<?= BASE_URL ?>?action=admin_fields" class="btn btn-outline-primary w-100">Quản lý sân bãi</a>
+                <a href="<?= BASE_URL ?>?action=stadiums" class="btn btn-outline-primary w-100">Quản lý sân bãi</a>
             </div>
             <div class="col-md-4">
                 <a href="<?= BASE_URL ?>?action=admin_bookings" class="btn btn-outline-primary w-100">Xem đặt lịch</a>
