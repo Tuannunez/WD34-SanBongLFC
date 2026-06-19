@@ -51,7 +51,7 @@ class AdminController
             $users = $userModel->getAllUsers();
         }
 
-        $title = 'Quản lý người dùng';
+        $title = '';
         $view = 'admin/users';
 
         require_once PATH_VIEW . 'main.php';
@@ -163,6 +163,38 @@ class AdminController
         }
 
         $userModel->deleteUser($id);
+
+        header('Location: ' . BASE_URL . '?action=admin_users');
+        exit;
+    }
+    
+    public function lockUser()
+    {
+        $this->ensureAdmin();
+
+        $id = (int)($_GET['id'] ?? 0);
+
+        if ($id == $_SESSION['user']['id']) {
+            die('Không thể khóa chính mình');
+        }
+
+        $userModel = new User();
+
+        $userModel->lockUser($id);
+
+        header('Location: ' . BASE_URL . '?action=admin_users');
+        exit;
+    }
+
+    public function unlockUser()
+    {
+        $this->ensureAdmin();
+
+        $id = (int)($_GET['id'] ?? 0);
+
+        $userModel = new User();
+
+        $userModel->unlockUser($id);
 
         header('Location: ' . BASE_URL . '?action=admin_users');
         exit;

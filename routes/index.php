@@ -24,6 +24,8 @@ match ($action) {
     'admin_user_create' => (new AdminController())->createUser(),
     'admin_user_edit' => (new AdminController())->editUser(),
     'admin_user_delete' => (new AdminController())->deleteUser(),
+    'admin_user_lock'   => (new AdminController())->lockUser(),
+    'admin_user_unlock' => (new AdminController())->unlockUser(),
     'admin_bookings'    => (new AdminController)->bookings(),
     'admin_revenue'     => (new AdminController)->revenue(),
     'admin_revenue_seed' => (new AdminController)->seedRevenueManual(),

@@ -75,8 +75,9 @@
                             <th>Username</th>
                             <th>Email</th>
                             <th>SĐT</th>
+                            <th>Trạng thái</th>  
                             <th>Vai trò</th>
-                            <th>Ngày tạo</th>
+                            <th>Ngày tạo</th>                        
                             <th width="180">Thao tác</th>
                         </tr>
                     </thead>
@@ -106,6 +107,23 @@
                             <td>
                                 <?= htmlspecialchars($user['phone'] ?? '') ?: 'Chưa cập nhật' ?>
                             </td>
+                            <td>
+
+                                <?php if (($user['status'] ?? 'active') === 'active'): ?>
+
+                                    <span class="badge bg-success">
+                                        Hoạt động
+                                    </span>
+
+                                <?php else: ?>
+
+                                    <span class="badge bg-danger">
+                                        Đã khóa
+                                    </span>
+
+                                <?php endif; ?>
+
+                             </td>
 
                             <td>
 
@@ -120,7 +138,7 @@
                                     <span class="badge bg-success">
                                         User
                                     </span>
-
+                                    
                                 <?php endif; ?>
 
                             </td>
@@ -129,18 +147,33 @@
                                 <?= $user['created_at'] ?>
                             </td>
 
-                            <td>
+                           <td>
 
                                 <a href="<?= BASE_URL ?>?action=admin_user_edit&id=<?= $user['id'] ?>"
-                                   class="btn btn-sm btn-outline-primary">
-                                    <i class="bi bi-pencil-square"></i>
+                                class="btn btn-sm btn-outline-primary">
                                     Sửa
                                 </a>
 
+                                <?php if (($user['status'] ?? 'active') === 'active'): ?>
+
+                                    <a href="<?= BASE_URL ?>?action=admin_user_lock&id=<?= $user['id'] ?>"
+                                    class="btn btn-sm btn-warning"
+                                    onclick="return confirm('Khóa tài khoản này?')">
+                                        Khóa
+                                    </a>
+
+                                <?php else: ?>
+
+                                    <a href="<?= BASE_URL ?>?action=admin_user_unlock&id=<?= $user['id'] ?>"
+                                    class="btn btn-sm btn-success">
+                                        Mở khóa
+                                    </a>
+
+                                <?php endif; ?>
+
                                 <a href="<?= BASE_URL ?>?action=admin_user_delete&id=<?= $user['id'] ?>"
-                                   class="btn btn-sm btn-outline-danger"
-                                   onclick="return confirm('Bạn có chắc muốn xóa người dùng này?')">
-                                    <i class="bi bi-trash"></i>
+                                class="btn btn-sm btn-danger"
+                                onclick="return confirm('Xóa người dùng này?')">
                                     Xóa
                                 </a>
 

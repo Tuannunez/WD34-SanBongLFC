@@ -121,4 +121,30 @@ class User extends BaseModel
 
         return $stmt->fetchAll();
     }
+    
+    public function lockUser(int $id): bool
+    {
+        $stmt = $this->pdo->prepare("
+            UPDATE users
+            SET status = 'locked'
+            WHERE id = :id
+        ");
+
+        return $stmt->execute([
+            'id' => $id
+        ]);
+    }
+
+    public function unlockUser(int $id): bool
+    {
+        $stmt = $this->pdo->prepare("
+            UPDATE users
+            SET status = 'active'
+            WHERE id = :id
+        ");
+
+        return $stmt->execute([
+            'id' => $id
+        ]);
+    }
 }
