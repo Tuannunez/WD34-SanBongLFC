@@ -295,7 +295,7 @@
                         </li>
                     <?php endif; ?>
                     <li class="nav-item">
-                        <a class="nav-link" href="<?= BASE_URL ?>?action=list">Danh sách sân bãi</a>
+                        <a class="nav-link" href="<?= BASE_URL ?>?action=stadiums">Danh sách sân bãi</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Giới thiệu</a>
@@ -355,11 +355,9 @@
         <h1 class="mt-3 mb-3"><?= $title ?? 'Home' ?></h1>
 
         <div class="row">
-            <?php
-            if (isset($view)) {
-                require_once PATH_VIEW . $view . '.php';
-            }
-            ?>
+            <?php if (isset($view)) : ?>
+                <?php require_once PATH_VIEW . $view . '.php'; ?>
+            <?php endif; ?>
         </div>
     </div>
 

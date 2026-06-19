@@ -38,12 +38,12 @@ class AdminController
         require_once PATH_VIEW . 'main.php';
     }
 
-    public function fields()
+    public function stadiums()
     {
         $this->ensureAdmin();
 
         $title = 'Quản lý sân bãi';
-        $view = 'admin/fields';
+        $view = 'admin/';
         require_once PATH_VIEW . 'main.php';
     }
 
