@@ -293,6 +293,9 @@
                         <li class="nav-item">
                             <a class="nav-link" href="<?= BASE_URL ?>?action=admin">Admin</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="<?= BASE_URL ?>?action=admin_revenue">Doanh Thu</a>
+                        </li>
                     <?php endif; ?>
                     <li class="nav-item">
                         <a class="nav-link" href="<?= BASE_URL ?>?action=stadiums">Danh sách sân bãi</a>

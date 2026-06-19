@@ -1,6 +1,11 @@
 <?php
 
-define('BASE_URL',          'http://localhost/WD_34-SanBongLFC/');
+$protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off') ? 'https://' : 'http://';
+$host = $_SERVER['HTTP_HOST'] ?? 'localhost';
+$scriptDir = rtrim(str_replace('\\', '/', dirname($_SERVER['SCRIPT_NAME'] ?? '/')), '/');
+$baseUrl = rtrim($protocol . $host . $scriptDir, '/') . '/';
+
+define('BASE_URL',          $baseUrl);
 
 define('PATH_ROOT',         __DIR__ . '/../');
 
@@ -21,7 +26,7 @@ define('DB_PORT',     '3306');
 define('DB_USERNAME', 'root');
 define('DB_PASSWORD', '');
 
-define('DB_NAME',     'wd34_sanbonglfcc');
+define('DB_NAME',     'wd34_sanbonglfc');
 
 define('DB_OPTIONS', [
     PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,

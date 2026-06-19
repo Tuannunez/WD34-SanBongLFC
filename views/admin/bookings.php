@@ -14,6 +14,8 @@
                     <th>Số điện thoại</th>
                     <th>Sân bóng</th>
                     <th>Ngày giờ đá</th>
+                    <th>Số giờ</th>
+                    <th>Tổng tiền</th>
                     <th>Ghi chú</th>
                     <th>Trạng thái</th>
                     <th>Hành động thực thi</th>
@@ -28,6 +30,8 @@
                             <td><?= htmlspecialchars($b['user_phone'] ?? 'Chưa cập nhật') ?></td>
                             <td><?= htmlspecialchars($b['stadium_name']) ?></td>
                             <td><?= date('d/m/Y H:i', strtotime($b['booking_date'])) ?></td>
+                            <td><?= htmlspecialchars($b['hours'] ?? '1') ?></td>
+                            <td><?= isset($b['total_price']) ? number_format($b['total_price'],0,',','.') . 'đ' : '-' ?></td>
                             <td><small class="text-muted"><?= htmlspecialchars($b['notes'] ?? 'Không có') ?></small></td>
                             <td>
                                 <?php if ($b['status'] === 'pending'): ?>
