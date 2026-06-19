@@ -83,7 +83,7 @@
             border-radius: 1rem;
             min-height: 400px;
             max-height: 460px;
-            background-image: url('https://images.unsplash.com/photo-1521412644187-c49fa049e84d?auto=format&fit=crop&w=1500&q=80');
+            background-image: url('https://sanbongdaminiphucyen.vn/wp-content/uploads/2026/02/banner-scaled.webp');
             background-size: cover;
             background-position: center;
             margin-top: 1rem;
@@ -269,7 +269,7 @@
         }
     </style>
 
-    <!-- Latest compiled JavaScript -->
+    
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 
@@ -289,6 +289,11 @@
                     <li class="nav-item">
                         <a class="nav-link active" href="<?= BASE_URL ?>">Trang chủ</a>
                     </li>
+                    <?php if (isset($_SESSION['user']) && ($_SESSION['user']['role'] ?? '') === 'admin') : ?>
+                        <li class="nav-item">
+                            <a class="nav-link" href="<?= BASE_URL ?>?action=admin">Admin</a>
+                        </li>
+                    <?php endif; ?>
                     <li class="nav-item">
                         <a class="nav-link" href="<?= BASE_URL ?>?action=list">Danh sách sân bãi</a>
                     </li>
