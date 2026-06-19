@@ -14,6 +14,9 @@ match ($action) {
     // Admin routes
     'admin'             => (new AdminController)->index(),
     'admin_users'       => (new AdminController)->users(),
+    'admin_user_create' => (new AdminController())->createUser(),
+    'admin_user_edit' => (new AdminController())->editUser(),
+    'admin_user_delete' => (new AdminController())->deleteUser(),
     'admin_bookings'    => (new AdminController)->bookings(),
     'stadiums' =>          (new StadiumController())->index(),
     'stadium_create' => (new StadiumController())->create(),
