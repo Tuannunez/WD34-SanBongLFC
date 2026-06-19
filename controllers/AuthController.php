@@ -161,7 +161,7 @@ class AuthController
         header("Location: {$url}");
         exit;
     }
-<<<<<<< HEAD
+
 
     public function bookingForm() 
 {
@@ -209,6 +209,5 @@ class AuthController
         $_SESSION['success'] = 'Gửi yêu cầu đặt sân thành công! Vui lòng chờ admin phê duyệt.';
         $this->redirect(BASE_URL);
     }
-=======
->>>>>>> 378206974fe1e07c14fd011cad6eebb4a5da62f3
+
 }
