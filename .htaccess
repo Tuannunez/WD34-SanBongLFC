@@ -1,0 +1,12 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /WD_34-SanBongLFC/
+
+    # Nếu là file hoặc thư mục thực thì không rewrite
+    RewriteCond %{REQUEST_FILENAME} -f [OR]
+    RewriteCond %{REQUEST_FILENAME} -d
+    RewriteRule ^ - [L]
+
+    # Chuyển tất cả request còn lại về index.php và gán action
+    RewriteRule ^(.*)$ index.php?action=$1 [L,QSA]
+</IfModule>
