@@ -6,10 +6,17 @@ class AdminController
 {
     public function __construct()
     {
+<<<<<<< HEAD
         // // ensure session started
         // if (session_status() === PHP_SESSION_NONE) {
         //     session_start();
         // }
+=======
+        // ensure session started
+        if (session_status() === PHP_SESSION_NONE) {
+            session_start();
+        }
+>>>>>>> 378206974fe1e07c14fd011cad6eebb4a5da62f3
     }
 
     private function ensureAdmin()
@@ -51,13 +58,17 @@ class AdminController
     {
         $this->ensureAdmin();
 
+<<<<<<< HEAD
         $bookingModel = new Booking();
         $bookings = $bookingModel->getAllBookings(); // Lấy từ DB đổ ra view
 
+=======
+>>>>>>> 378206974fe1e07c14fd011cad6eebb4a5da62f3
         $title = 'Quản lý đặt lịch';
         $view = 'admin/bookings';
         require_once PATH_VIEW . 'main.php';
     }
+<<<<<<< HEAD
 
     public function updateBookingStatus()
     {
@@ -77,4 +88,6 @@ class AdminController
         header('Location: ' . BASE_URL . '?action=admin_bookings');
         exit;
     }
+=======
+>>>>>>> 378206974fe1e07c14fd011cad6eebb4a5da62f3
 }

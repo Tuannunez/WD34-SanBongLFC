@@ -20,7 +20,11 @@ define('DB_HOST',     'localhost');
 define('DB_PORT',     '3306');
 define('DB_USERNAME', 'root');
 define('DB_PASSWORD', '');
+<<<<<<< HEAD
 define('DB_NAME',     'wd34_sanbonglfcc');
+=======
+define('DB_NAME',     'wd34_sanbonglfc');
+>>>>>>> 378206974fe1e07c14fd011cad6eebb4a5da62f3
 define('DB_OPTIONS', [
     PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
     PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
