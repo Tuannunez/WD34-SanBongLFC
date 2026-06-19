@@ -161,4 +161,54 @@ class AuthController
         header("Location: {$url}");
         exit;
     }
+<<<<<<< HEAD
+
+    public function bookingForm() 
+{
+    // Bắt buộc phải khởi động session để kiểm tra (index.php đã có session_start nên ở đây không cần)
+    if (!isset($_SESSION['user'])) {
+        $_SESSION['errors'] = ['Vui lòng đăng nhập để thực hiện đặt sân bãi.'];
+        header('Location: ' . BASE_URL . '?action=login');
+        exit;
+    }
+
+    // Nạp Model Stadium để lấy dữ liệu sân bóng
+    require_once PATH_MODEL . 'Stadium.php';
+    $stadiumModel = new Stadium();
+    $stadiums = $stadiumModel->getAll();
+
+    $title = 'Đặt lịch đá bóng';
+    $view = 'users/booking_form'; // Gọi đến file views/users/booking_form.php
+    
+    // Nhúng master layout để hiển thị giao diện form lồng bên trong navbar
+    require_once PATH_VIEW . 'main.php';
+}
+
+    public function bookingSubmit() {
+        if ($_SERVER['REQUEST_METHOD'] !== 'POST' || !isset($_SESSION['user'])) {
+            $this->redirect(BASE_URL);
+        }
+
+        $stadiumId = (int)$_POST['stadium_id'];
+        $bookingDate = $_POST['booking_date'];
+        $notes = trim($_POST['notes'] ?? '');
+
+        if (!$stadiumId || !$bookingDate) {
+            $_SESSION['errors'] = ['Vui lòng điền đầy đủ thông tin đặt sân.'];
+            $this->redirect(BASE_URL . '?action=booking_form');
+        }
+
+        $bookingModel = new Booking();
+        $bookingModel->createBooking([
+            'user_id' => $_SESSION['user']['id'],
+            'stadium_id' => $stadiumId,
+            'booking_date' => $bookingDate,
+            'notes' => $notes
+        ]);
+
+        $_SESSION['success'] = 'Gửi yêu cầu đặt sân thành công! Vui lòng chờ admin phê duyệt.';
+        $this->redirect(BASE_URL);
+    }
+=======
+>>>>>>> 378206974fe1e07c14fd011cad6eebb4a5da62f3
 }

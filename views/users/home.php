@@ -75,7 +75,11 @@
         <div class="col-md-4">
             <h6>Liên hệ</h6>
             <p>Hỗ trợ khách hàng 24/7</p>
+<<<<<<< HEAD
+            <a href="<?= BASE_URL ?>?action=booking_form" class="btn btn-warning text-dark fw-bold">Đặt lịch ngay</a>
+=======
             <a href="#" class="btn btn-warning text-dark fw-bold">Đặt lịch ngay</a>
+>>>>>>> 378206974fe1e07c14fd011cad6eebb4a5da62f3
         </div>
     </div>
 </div>
