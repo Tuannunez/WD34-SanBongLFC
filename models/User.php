@@ -56,4 +56,69 @@ class User extends BaseModel
         $stmt = $this->pdo->prepare("UPDATE {$this->table} SET password = :password WHERE id = :id");
         return $stmt->execute(['password' => $passwordHash, 'id' => $id]);
     }
+    public function getAllUsers()
+    {
+        $stmt = $this->pdo->query("
+            SELECT *
+            FROM users
+            ORDER BY id DESC
+        ");
+
+        return $stmt->fetchAll();
+    }
+
+    public function updateUser(int $id, array $data): bool
+    {
+        $stmt = $this->pdo->prepare("
+            UPDATE users
+            SET
+                fullname = :fullname,
+                username = :username,
+                email = :email,
+                phone = :phone,
+                address = :address,
+                role = :role
+            WHERE id = :id
+        ");
+
+        return $stmt->execute([
+            'fullname' => $data['fullname'],
+            'username' => $data['username'],
+            'email' => $data['email'],
+            'phone' => $data['phone'],
+            'address' => $data['address'],
+            'role' => $data['role'],
+            'id' => $id
+        ]);
+    }
+    
+    public function deleteUser(int $id): bool
+    {
+        $stmt = $this->pdo->prepare("
+            DELETE FROM users
+            WHERE id = :id
+        ");
+
+        return $stmt->execute([
+            'id' => $id
+        ]);
+    }
+
+    public function searchUsers(string $keyword): array
+    {
+        $stmt = $this->pdo->prepare("
+            SELECT *
+            FROM users
+            WHERE fullname LIKE :keyword
+            OR username LIKE :keyword
+            OR email LIKE :keyword
+            ORDER BY id DESC
+        ");
+
+        $stmt->execute([
+            'keyword' => "%$keyword%"
+        ]);
+
+        return $stmt->fetchAll();
+    }
 }
