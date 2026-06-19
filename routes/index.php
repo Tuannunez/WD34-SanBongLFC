@@ -22,6 +22,7 @@ match ($action) {
     'admin'             => (new AdminController)->index(),
     'admin_users'       => (new AdminController)->users(),
     'admin_bookings'    => (new AdminController)->bookings(),
+    'admin_revenue'     => (new AdminController)->revenue(),
     'stadiums' =>          (new StadiumController())->index(),
     'stadium_create' => (new StadiumController())->create(),
     'stadium_store'  => (new StadiumController())->store(),

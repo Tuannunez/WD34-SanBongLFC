@@ -30,4 +30,77 @@ class Booking extends BaseModel {
         $stmt = $this->pdo->prepare("UPDATE {$this->table} SET status = :status WHERE id = :id");
         return $stmt->execute(['status' => $status, 'id' => $id]);
     }
+
+    // Tính doanh thu theo ngày (hôm nay)
+    public function getRevenueByDay(): float {
+        $sql = "SELECT COALESCE(SUM(s.price_per_hour), 0) as total
+                FROM {$this->table} b
+                JOIN stadiums s ON b.stadium_id = s.id
+                WHERE b.status = 'confirmed'
+                AND DATE(b.booking_date) = CURDATE()";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute();
+        return (float) $stmt->fetch()['total'] ?? 0;
+    }
+
+    // Tính doanh thu theo tuần hiện tại
+    public function getRevenueByWeek(): float {
+        $sql = "SELECT COALESCE(SUM(s.price_per_hour), 0) as total
+                FROM {$this->table} b
+                JOIN stadiums s ON b.stadium_id = s.id
+                WHERE b.status = 'confirmed'
+                AND YEARWEEK(b.booking_date) = YEARWEEK(CURDATE())";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute();
+        return (float) $stmt->fetch()['total'] ?? 0;
+    }
+
+    // Tính doanh thu theo tháng hiện tại
+    public function getRevenueByMonth(): float {
+        $sql = "SELECT COALESCE(SUM(s.price_per_hour), 0) as total
+                FROM {$this->table} b
+                JOIN stadiums s ON b.stadium_id = s.id
+                WHERE b.status = 'confirmed'
+                AND YEAR(b.booking_date) = YEAR(CURDATE())
+                AND MONTH(b.booking_date) = MONTH(CURDATE())";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute();
+        return (float) $stmt->fetch()['total'] ?? 0;
+    }
+
+    // Tính doanh thu theo quý hiện tại
+    public function getRevenueByQuarter(): float {
+        $sql = "SELECT COALESCE(SUM(s.price_per_hour), 0) as total
+                FROM {$this->table} b
+                JOIN stadiums s ON b.stadium_id = s.id
+                WHERE b.status = 'confirmed'
+                AND YEAR(b.booking_date) = YEAR(CURDATE())
+                AND QUARTER(b.booking_date) = QUARTER(CURDATE())";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute();
+        return (float) $stmt->fetch()['total'] ?? 0;
+    }
+
+    // Tính doanh thu theo năm hiện tại
+    public function getRevenueByYear(): float {
+        $sql = "SELECT COALESCE(SUM(s.price_per_hour), 0) as total
+                FROM {$this->table} b
+                JOIN stadiums s ON b.stadium_id = s.id
+                WHERE b.status = 'confirmed'
+                AND YEAR(b.booking_date) = YEAR(CURDATE())";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute();
+        return (float) $stmt->fetch()['total'] ?? 0;
+    }
+
+    // Tính tổng doanh thu toàn thời gian
+    public function getTotalRevenue(): float {
+        $sql = "SELECT COALESCE(SUM(s.price_per_hour), 0) as total
+                FROM {$this->table} b
+                JOIN stadiums s ON b.stadium_id = s.id
+                WHERE b.status = 'confirmed'";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute();
+        return (float) $stmt->fetch()['total'] ?? 0;
+    }
 }

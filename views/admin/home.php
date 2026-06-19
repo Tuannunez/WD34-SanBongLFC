@@ -41,7 +41,7 @@
                 <a href="<?= BASE_URL ?>?action=admin_users" class="btn btn-outline-primary w-100">Quản lý người dùng</a>
             </div>
             <div class="col-md-4">
-                <a href="#" class="btn btn-outline-primary w-100">Doanh thu</a>
+                <a href="<?= BASE_URL ?>?action=admin_revenue" class="btn btn-outline-primary w-100">Doanh thu</a>
             </div>
             <div class="col-md-4">
                 <a href="#" class="btn btn-outline-primary w-100">Thanh toán</a>

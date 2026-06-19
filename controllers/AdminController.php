@@ -68,6 +68,23 @@ class AdminController
         require_once PATH_VIEW . 'main.php';
     }
 
+    public function revenue()
+    {
+        $this->ensureAdmin();
+
+        $bookingModel = new Booking();
+        $revenueByDay = $bookingModel->getRevenueByDay();
+        $revenueByWeek = $bookingModel->getRevenueByWeek();
+        $revenueByMonth = $bookingModel->getRevenueByMonth();
+        $revenueByQuarter = $bookingModel->getRevenueByQuarter();
+        $revenueByYear = $bookingModel->getRevenueByYear();
+        $totalRevenue = $bookingModel->getTotalRevenue();
+
+        $title = 'Tổng Doanh Thu';
+        $view = 'Revenue/Total';
+        require_once PATH_VIEW . 'main.php';
+    }
+
 
     public function updateBookingStatus()
     {
